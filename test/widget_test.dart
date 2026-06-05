@@ -1,12 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:portfolio/app/portfolio_app.dart';
 import 'package:portfolio/features/projects/domain/portfolio_project.dart';
 import 'package:portfolio/features/projects/widgets/project_showcase.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 void main() {
+  setUpAll(() {
+    VisibilityDetectorController.instance.updateInterval = Duration.zero;
+  });
+
   testWidgets('hero renders core CTA buttons', (tester) async {
     await tester.pumpWidget(const PortfolioApp());
     await tester.pump(const Duration(milliseconds: 400));
@@ -78,18 +81,12 @@ class _TestHarness extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ar', 'EG')],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
-      startLocale: const Locale('en'),
-      child: MaterialApp(home: Scaffold(body: child)),
-    );
+    return MaterialApp(home: Scaffold(body: child));
   }
 }
 
 class _ProjectListTestBody extends StatelessWidget {
-  _ProjectListTestBody();
+  const _ProjectListTestBody();
 
   final projects = const [
     PortfolioProject(

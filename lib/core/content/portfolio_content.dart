@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/home/domain/timeline_entry.dart';
@@ -6,117 +5,116 @@ import '../../features/projects/domain/portfolio_project.dart';
 import 'app_links.dart';
 
 abstract final class PortfolioContent {
-  static List<TimelineEntry> timeline(BuildContext context) => [
+  static List<TimelineEntry> timeline() => [
     TimelineEntry(
-      date: tr('timeline.entries.0.date'),
-      title: tr('timeline.entries.0.title'),
-      description: tr('timeline.entries.0.description'),
-      tags: [
-        tr('timeline.entries.0.tags.0'),
-        tr('timeline.entries.0.tags.1'),
-        tr('timeline.entries.0.tags.2'),
-      ],
+      date: 'Sep 2020 – Jun 2023',
+      title: 'High School — Misr International Computer & Ai',
+      description:
+          'Computer Programming diploma, graduated with Excellence. First hands-on programming: Java, SQL, PL/SQL & Arduino.',
+      tags: ['Java', 'SQL', 'Arduino'],
     ),
     TimelineEntry(
-      date: tr('timeline.entries.1.date'),
-      title: tr('timeline.entries.1.title'),
-      description: tr('timeline.entries.1.description'),
-      tags: [tr('timeline.entries.1.tags.0')],
+      date: 'Oct 2023 – Present',
+      title: 'B.Tech, Information Technology',
+      description:
+          'Currently studying a Bachelor of Technology in Information Technology at October Technological University.',
+      tags: ['IT'],
     ),
     TimelineEntry(
-      date: tr('timeline.entries.2.date'),
-      title: tr('timeline.entries.2.title'),
-      description: tr('timeline.entries.2.description'),
-      tags: [
-        tr('timeline.entries.2.tags.0'),
-        tr('timeline.entries.2.tags.1'),
-        tr('timeline.entries.2.tags.2'),
-      ],
+      date: 'Early 2024',
+      title: 'Discovered Flutter',
+      description:
+          'Began self-teaching Flutter & Dart and fell for building real mobile apps — first time programming ever.',
+      tags: ['Flutter', 'Dart', 'Self-taught'],
     ),
     TimelineEntry(
-      date: tr('timeline.entries.3.date'),
-      title: tr('timeline.entries.3.title'),
-      description: tr('timeline.entries.3.description'),
-      tags: [tr('timeline.entries.3.tags.0'), tr('timeline.entries.3.tags.1')],
+      date: 'Apr 2024',
+      title: 'First Freelance Project',
+      description:
+          'Landed first paid client via Kafiil on 23 April 2024 — turning brand-new skills into shipped work.',
+      tags: ['Freelance', 'Kafiil'],
     ),
     TimelineEntry(
-      date: tr('timeline.entries.4.date'),
-      title: tr('timeline.entries.4.title'),
-      description: tr('timeline.entries.4.description'),
-      tags: [tr('timeline.entries.4.tags.0')],
+      date: 'Apr 2025 – Jun 2025',
+      title: 'Flutter Developer Intern — Paymac',
+      description:
+          'Joined Paymac on-site as a Flutter Developer intern, working across production apps.',
+      tags: ['Internship'],
     ),
     TimelineEntry(
-      date: tr('timeline.entries.5.date'),
-      title: tr('timeline.entries.5.title'),
-      description: tr('timeline.entries.5.description'),
-      tags: [tr('timeline.entries.5.tags.0')],
+      date: 'Jul 2025 – Present',
+      title: 'Flutter Developer — Paymac',
+      description:
+          'Promoted to full-time. Building and shipping production Flutter products at Paymac.',
+      tags: ['Full-time'],
     ),
   ];
 
-  static List<String> credibilityPoints(BuildContext context) => [
-    tr('credibility.flutter'),
-    tr('credibility.firebase'),
-    tr('credibility.apis'),
-    tr('credibility.payments'),
-    tr('credibility.maps'),
-    tr('credibility.localization'),
-    tr('credibility.shipping'),
+  static List<String> credibilityPoints() => [
+    'Flutter & Dart',
+    'Firebase ecosystems',
+    'GraphQL & REST APIs',
+    'Payments & subscriptions',
+    'Maps & QR flows',
+    'Arabic / English apps',
+    'App Store & Play Store shipping',
   ];
 
-  static List<CapabilityGroup> capabilities(BuildContext context) => [
+  static List<CapabilityGroup> capabilities() => [
     CapabilityGroup(
-      title: tr('capabilities.mobile.title'),
+      title: 'Mobile Engineering',
       icon: Icons.phone_iphone_rounded,
       items: [
-        tr('capabilities.mobile.items.0'),
-        tr('capabilities.mobile.items.1'),
-        tr('capabilities.mobile.items.2'),
-        tr('capabilities.mobile.items.3'),
+        'Flutter',
+        'Dart',
+        'Android & iOS delivery',
+        'Responsive UI systems',
       ],
     ),
     CapabilityGroup(
-      title: tr('capabilities.architecture.title'),
+      title: 'Architecture & State',
       icon: Icons.account_tree_outlined,
       items: [
-        tr('capabilities.architecture.items.0'),
-        tr('capabilities.architecture.items.1'),
-        tr('capabilities.architecture.items.2'),
-        tr('capabilities.architecture.items.3'),
+        'Bloc / Cubit',
+        'Feature-based architecture',
+        'Dependency injection',
+        'Clean implementation patterns',
       ],
     ),
     CapabilityGroup(
-      title: tr('capabilities.backend.title'),
+      title: 'Backend & Integrations',
       icon: Icons.cloud_outlined,
       items: [
-        tr('capabilities.backend.items.0'),
-        tr('capabilities.backend.items.1'),
-        tr('capabilities.backend.items.2'),
-        tr('capabilities.backend.items.3'),
+        'Firebase',
+        'GraphQL & REST APIs',
+        'Dio / Retrofit',
+        'Notifications, auth, analytics',
       ],
     ),
     CapabilityGroup(
-      title: tr('capabilities.product.title'),
+      title: 'Product Workflows',
       icon: Icons.insights_outlined,
       items: [
-        tr('capabilities.product.items.0'),
-        tr('capabilities.product.items.1'),
-        tr('capabilities.product.items.2'),
-        tr('capabilities.product.items.3'),
+        'Subscriptions & payments',
+        'POS and business operations',
+        'Healthcare booking',
+        'Maps, QR, localization',
       ],
     ),
   ];
 
-  static List<PortfolioProject> projects(BuildContext context) => [
+  static List<PortfolioProject> projects() => [
     PortfolioProject(
       slug: 'meta_pos_cashier',
       title: 'META POS Cashier',
-      category: tr('projects.meta_pos.category'),
-      summary: tr('projects.meta_pos.summary'),
+      category: 'Production Retail & Restaurant Operations',
+      summary:
+          'A large-scale cross-platform POS system built for real store and restaurant workflows, covering cashiering, inventory, warehouse, kitchen operations, reporting, and hardware integrations.',
       features: [
-        tr('projects.meta_pos.features.0'),
-        tr('projects.meta_pos.features.1'),
-        tr('projects.meta_pos.features.2'),
-        tr('projects.meta_pos.features.3'),
+        'Cashier, sales, refunds, purchases, and return flows',
+        'Inventory, warehouse, manufacturing, and shift closing workflows',
+        'Barcode scanning, label generation, and invoice printing',
+        'Offline persistence, sync recovery, and multilingual support',
       ],
       techStack: const [
         'Flutter',
@@ -126,7 +124,8 @@ abstract final class PortfolioContent {
         'Firebase',
         'Sentry',
       ],
-      roleSummary: tr('projects.meta_pos.role'),
+      roleSummary:
+          'Built complex operational flows, multi-platform UI, offline-aware behavior, backend integrations, localization, and hardware-driven cashier experiences.',
       status: ProjectStatus.live,
       links: const [
         ProjectLink(
@@ -160,13 +159,14 @@ abstract final class PortfolioContent {
     PortfolioProject(
       slug: 'mostyle',
       title: 'MoStyle',
-      category: tr('projects.mostyle.category'),
-      summary: tr('projects.mostyle.summary'),
+      category: 'Fitness Subscription Product',
+      summary:
+          'A personalized fitness app centered on onboarding, workout plan delivery, guided sessions, subscriptions, referrals, and progress tracking across a polished consumer experience.',
       features: [
-        tr('projects.mostyle.features.0'),
-        tr('projects.mostyle.features.1'),
-        tr('projects.mostyle.features.2'),
-        tr('projects.mostyle.features.3'),
+        'Email, Google, and Apple authentication',
+        'Workout plans tailored to user preferences',
+        'Trial, referral, and subscription payment flows',
+        'Progress analytics, notifications, and preference handling',
       ],
       techStack: const [
         'Flutter',
@@ -176,7 +176,8 @@ abstract final class PortfolioContent {
         'GetIt',
         'Dio',
       ],
-      roleSummary: tr('projects.mostyle.role'),
+      roleSummary:
+          'Worked on app architecture, authentication, subscriptions, analytics, progress tracking, notification behavior, and responsive UI delivery.',
       status: ProjectStatus.live,
       links: const [
         ProjectLink(
@@ -192,19 +193,23 @@ abstract final class PortfolioContent {
           kind: ProjectLinkKind.store,
         ),
       ],
-      imageAssets: const [],
+      imageAssets: const [
+        'assets/images/projects/mostyle/screen_1.webp',
+        'assets/images/projects/mostyle/screen_2.webp',
+      ],
       accentColor: const Color(0xFF7ED4C0),
     ),
     PortfolioProject(
       slug: 'volta_ev_charging_app',
       title: 'VOLTA EV Charging App',
-      category: tr('projects.volta.category'),
-      summary: tr('projects.volta.summary'),
+      category: 'EV Mobility & Charging Experience',
+      summary:
+          'A production-style EV charging product that helps drivers discover stations, reserve chargers, activate sessions through QR scanning, track charging, and manage wallet and commerce flows.',
       features: [
-        tr('projects.volta.features.0'),
-        tr('projects.volta.features.1'),
-        tr('projects.volta.features.2'),
-        tr('projects.volta.features.3'),
+        'Station discovery with charger availability and connector detail',
+        'Reservation flows and QR-based charging activation',
+        'Wallet, transactions, deep linking, and multilingual support',
+        'EV accessories shop with cart, checkout, and order flows',
       ],
       techStack: const [
         'Flutter',
@@ -214,7 +219,8 @@ abstract final class PortfolioContent {
         'Freezed',
         'Google Maps',
       ],
-      roleSummary: tr('projects.volta.role'),
+      roleSummary:
+          'Built layered app flows around mapping, QR-based charging, secure persistence, localization, and commerce-oriented user journeys.',
       status: ProjectStatus.inProgress,
       links: const [],
       imageAssets: const [],
@@ -223,13 +229,14 @@ abstract final class PortfolioContent {
     PortfolioProject(
       slug: 'refine_care',
       title: 'Refine Care',
-      category: tr('projects.refine.category'),
-      summary: tr('projects.refine.summary'),
+      category: 'Healthcare Booking & Ordering',
+      summary:
+          'A healthcare and laboratory booking app that supports discovery, cart and checkout, online payment, order tracking, wallet flows, and bilingual customer experiences.',
       features: [
-        tr('projects.refine.features.0'),
-        tr('projects.refine.features.1'),
-        tr('projects.refine.features.2'),
-        tr('projects.refine.features.3'),
+        'OTP authentication and profile management',
+        'Nearby laboratories, services, search, and filtering',
+        'Cart, payment continuation, order tracking, refunds, and reorder',
+        'Invoice sharing, wallet management, and notifications',
       ],
       techStack: const [
         'Flutter',
@@ -239,7 +246,8 @@ abstract final class PortfolioContent {
         'WebView',
         'ScreenUtil',
       ],
-      roleSummary: tr('projects.refine.role'),
+      roleSummary:
+          'Built and maintained core screens and flows, integrated APIs, implemented payments, notifications, localization, and reliability improvements with Crashlytics.',
       status: ProjectStatus.live,
       links: const [
         ProjectLink(
