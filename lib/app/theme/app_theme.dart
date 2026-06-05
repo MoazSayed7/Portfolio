@@ -4,12 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 
 abstract final class AppTheme {
-  static ThemeData dark(Locale locale) {
+  static ThemeData dark() {
     const colors = AppColors.dark();
-    final isArabic = locale.languageCode == 'ar';
-    final baseTextTheme = isArabic
-        ? GoogleFonts.cairoTextTheme(Typography.whiteMountainView)
-        : GoogleFonts.plusJakartaSansTextTheme(Typography.whiteMountainView);
+    final baseTextTheme = GoogleFonts.plusJakartaSansTextTheme(
+      Typography.whiteMountainView,
+    );
 
     TextStyle displayFont({
       required double size,
@@ -17,8 +16,7 @@ abstract final class AppTheme {
       required FontWeight weight,
       required Color color,
     }) {
-      final base = isArabic ? GoogleFonts.cairo() : GoogleFonts.spaceGrotesk();
-      return base.copyWith(
+      return GoogleFonts.spaceGrotesk().copyWith(
         fontSize: size,
         height: height,
         fontWeight: weight,

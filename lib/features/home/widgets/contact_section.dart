@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,9 +17,10 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionShell(
-      eyebrow: tr('sections.contact.eyebrow'),
-      title: tr('sections.contact.title'),
-      description: tr('sections.contact.description'),
+      eyebrow: 'Contact',
+      title: 'Available for Flutter freelance and remote opportunities.',
+      description:
+          'If you need a Flutter engineer who can work across product logic, architecture, and shipping detail, reach out through the channel that fits your workflow.',
       child: HoverLift(
         child: GlassCard(
           borderRadius: 32,
@@ -32,7 +32,7 @@ class ContactSection extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () => _open(AppLinks.email),
-                  child: Text(tr('common.email')),
+                  child: const Text('Email'),
                 ),
                 OutlinedButton(
                   onPressed: () => _open(AppLinks.whatsapp),
@@ -48,7 +48,7 @@ class ContactSection extends StatelessWidget {
                 ),
                 OutlinedButton(
                   onPressed: () => _open(AppLinks.cv),
-                  child: Text(tr('common.download_cv')),
+                  child: const Text('Download CV'),
                 ),
               ],
             ),

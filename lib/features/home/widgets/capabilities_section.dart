@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -15,9 +14,10 @@ class CapabilitiesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionShell(
-      eyebrow: tr('sections.capabilities.eyebrow'),
-      title: tr('sections.capabilities.title'),
-      description: tr('sections.capabilities.description'),
+      eyebrow: 'Capabilities',
+      title: 'Engineering strengths grouped by product value.',
+      description:
+          'I prefer showing capabilities in the context of shipped work, but these are the recurring building blocks behind the products above.',
       child: LayoutBuilder(
         builder: (context, constraints) {
           const spacing = 20.0;
