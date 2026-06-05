@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -18,9 +17,10 @@ class TimelineSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionShell(
-      eyebrow: tr('sections.timeline.eyebrow'),
-      title: tr('sections.timeline.title'),
-      description: tr('sections.timeline.description'),
+      eyebrow: 'Journey',
+      title: 'From the classroom to production.',
+      description:
+          'A self-taught path that went from a computer programming diploma to shipping real Flutter apps — in under two years.',
       child: LayoutBuilder(
         builder: (context, constraints) {
           final isWide = constraints.maxWidth >= AppBreakpoints.tablet;
@@ -76,12 +76,13 @@ class _WideTimelineState extends State<_WideTimeline>
     if (_triggered || info.visibleFraction < 0.05) return;
     _triggered = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final box =
-          _columnKey.currentContext?.findRenderObject() as RenderBox?;
+      final box = _columnKey.currentContext?.findRenderObject() as RenderBox?;
       if (box == null || !mounted) return;
       setState(() {
-        _lineHeight =
-            (box.size.height - _firstDotOffset * 2).clamp(0.0, double.maxFinite);
+        _lineHeight = (box.size.height - _firstDotOffset * 2).clamp(
+          0.0,
+          double.maxFinite,
+        );
       });
       _ctrl.forward();
     });
@@ -251,12 +252,13 @@ class _NarrowTimelineState extends State<_NarrowTimeline>
     if (_triggered || info.visibleFraction < 0.05) return;
     _triggered = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final box =
-          _columnKey.currentContext?.findRenderObject() as RenderBox?;
+      final box = _columnKey.currentContext?.findRenderObject() as RenderBox?;
       if (box == null || !mounted) return;
       setState(() {
-        _lineHeight =
-            (box.size.height - _firstDotOffset * 2).clamp(0.0, double.maxFinite);
+        _lineHeight = (box.size.height - _firstDotOffset * 2).clamp(
+          0.0,
+          double.maxFinite,
+        );
       });
       _ctrl.forward();
     });
@@ -425,8 +427,9 @@ class _TimelineCard extends StatelessWidget {
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children:
-                      entry.tags.map((tag) => Chip(label: Text(tag))).toList(),
+                  children: entry.tags
+                      .map((tag) => Chip(label: Text(tag)))
+                      .toList(),
                 ),
               ],
             ],

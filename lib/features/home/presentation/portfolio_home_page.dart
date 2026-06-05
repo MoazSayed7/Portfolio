@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/content/app_links.dart';
+import '../../../core/content/portfolio_content.dart';
 import '../../../core/layout/app_breakpoints.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/animated_orb_background.dart';
@@ -9,29 +9,16 @@ import '../../../core/widgets/glass_card.dart';
 import '../../../core/widgets/hover_lift.dart';
 import '../../../core/widgets/scroll_progress_bar.dart';
 import '../../../core/widgets/scroll_reveal.dart';
-import '../../projects/domain/portfolio_project.dart';
 import '../widgets/capabilities_section.dart';
 import '../widgets/contact_section.dart';
 import '../widgets/credibility_strip.dart';
 import '../widgets/hero_section.dart';
-import '../domain/timeline_entry.dart';
 import '../widgets/section_shell.dart';
 import '../widgets/timeline_section.dart';
 import '../../projects/widgets/project_showcase.dart';
 
 class PortfolioHomePage extends StatefulWidget {
-  const PortfolioHomePage({
-    super.key,
-    required this.projects,
-    required this.capabilities,
-    required this.credibilityPoints,
-    required this.timeline,
-  });
-
-  final List<PortfolioProject> projects;
-  final List<CapabilityGroup> capabilities;
-  final List<String> credibilityPoints;
-  final List<TimelineEntry> timeline;
+  const PortfolioHomePage({super.key});
 
   @override
   State<PortfolioHomePage> createState() => _PortfolioHomePageState();
@@ -61,6 +48,10 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
   @override
   Widget build(BuildContext context) {
     final colors = AppColors.of(context);
+    final projects = PortfolioContent.projects();
+    final capabilities = PortfolioContent.capabilities();
+    final credibilityPoints = PortfolioContent.credibilityPoints();
+    final timeline = PortfolioContent.timeline();
 
     return Scaffold(
       backgroundColor: colors.background,
@@ -106,19 +97,19 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                         const SizedBox(height: 28),
                         ScrollReveal(
                           delay: const Duration(milliseconds: 420),
-                          child: CredibilityStrip(
-                            items: widget.credibilityPoints,
-                          ),
+                          child: CredibilityStrip(items: credibilityPoints),
                         ),
                         const SizedBox(height: 72),
                         SectionShell(
                           key: _projectsKey,
-                          eyebrow: tr('sections.work.eyebrow'),
-                          title: tr('sections.work.title'),
-                          description: tr('sections.work.description'),
+                          eyebrow: 'Selected Work',
+                          title:
+                              'Products built for real users, real payments, and real operations.',
+                          description:
+                              'The strongest proof is production work. These four projects show how I approach subscriptions, commerce, healthcare ordering, EV charging, and high-volume business workflows in Flutter.',
                           child: Column(
                             children: [
-                              for (var i = 0; i < widget.projects.length; i++)
+                              for (var i = 0; i < projects.length; i++)
                                 ScrollReveal(
                                   delay: Duration(milliseconds: 120 * i),
                                   child: Padding(
@@ -126,7 +117,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                                       top: i == 0 ? 0 : 28,
                                     ),
                                     child: ProjectShowcase(
-                                      project: widget.projects[i],
+                                      project: projects[i],
                                       isReversed: i.isOdd,
                                     ),
                                   ),
@@ -136,9 +127,11 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                         ),
                         const SizedBox(height: 72),
                         SectionShell(
-                          eyebrow: tr('sections.about.eyebrow'),
-                          title: tr('sections.about.title'),
-                          description: tr('sections.about.description'),
+                          eyebrow: 'About',
+                          title:
+                              'I focus on Flutter products that need more than polished screens.',
+                          description:
+                              'My work sits where product logic, operational clarity, and reliable engineering meet. I enjoy building apps with strong architecture, real-world integrations, bilingual UX, and flows that have to hold up outside demo mode.',
                           child: LayoutBuilder(
                             builder: (context, constraints) {
                               final isWide =
@@ -146,21 +139,17 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                               final first = HoverLift(
                                 glowColor: colors.accent,
                                 child: _AboutCard(
-                                  title: tr(
-                                    'sections.about.cards.work.title',
-                                  ),
-                                  body: tr('sections.about.cards.work.body'),
+                                  title: 'How I work',
+                                  body:
+                                      'I care about structure, maintainable state, good UX, and delivery speed. I prefer systems that are easy to extend, not just easy to demo.',
                                 ),
                               );
                               final second = HoverLift(
                                 glowColor: colors.accent,
                                 child: _AboutCard(
-                                  title: tr(
-                                    'sections.about.cards.building.title',
-                                  ),
-                                  body: tr(
-                                    'sections.about.cards.building.body',
-                                  ),
+                                  title: 'What I like building',
+                                  body:
+                                      'Subscription products, operations tools, mapped experiences, payment flows, real-time behavior, and the kind of mobile apps where product reliability matters every day.',
                                 ),
                               );
 
@@ -187,9 +176,9 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                           ),
                         ),
                         const SizedBox(height: 72),
-                        TimelineSection(entries: widget.timeline),
+                        TimelineSection(entries: timeline),
                         const SizedBox(height: 72),
-                        CapabilitiesSection(groups: widget.capabilities),
+                        CapabilitiesSection(groups: capabilities),
                         const SizedBox(height: 72),
                         ScrollReveal(child: const ContactSection()),
                       ],

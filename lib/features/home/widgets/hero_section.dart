@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,7 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/layout/app_breakpoints.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/hover_lift.dart';
-import '../../../core/widgets/locale_switch.dart';
 import 'floating_badges.dart';
 
 class HeroSection extends StatelessWidget {
@@ -39,147 +37,154 @@ class HeroSection extends StatelessWidget {
         builder: (context, constraints) {
           final isWide = constraints.maxWidth >= AppBreakpoints.tablet;
 
-          final badge = Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: colors.accentSoft,
-                    borderRadius: BorderRadius.circular(999),
-                    border: Border.all(
-                      color: colors.accent.withValues(alpha: 0.20),
+          final badge =
+              Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: colors.accentSoft,
+                            borderRadius: BorderRadius.circular(999),
+                            border: Border.all(
+                              color: colors.accent.withValues(alpha: 0.20),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 10,
+                            ),
+                            child: Text(
+                              'Flutter Developer • Egypt',
+                              style: textTheme.labelLarge?.copyWith(
+                                color: colors.accent,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                    ],
+                  )
+                  .animate()
+                  .fadeIn(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOutCubic,
+                  )
+                  .moveX(
+                    begin: -12,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOutCubic,
+                  );
+
+          final name =
+              Text(
+                    'Moaz Sayed',
+                    style: textTheme.displayLarge?.copyWith(
+                      fontSize: isWide ? 88 : 62,
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 10,
-                    ),
+                  )
+                  .animate(delay: const Duration(milliseconds: 100))
+                  .fadeIn(
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeOutCubic,
+                  )
+                  .moveY(
+                    begin: 16,
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeOutCubic,
+                  );
+
+          final headline =
+              ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 720),
                     child: Text(
-                      tr('hero.badge'),
-                      style: textTheme.labelLarge?.copyWith(
-                        color: colors.accent,
+                      'Flutter engineer building production-ready mobile apps with strong architecture, real-world integrations, and product workflows that hold up outside demo mode.',
+                      style: textTheme.headlineMedium?.copyWith(
+                        color: colors.textMuted,
+                        fontSize: isWide ? 28 : 24,
                       ),
                     ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
-              const LocaleSwitch(),
-            ],
-          )
-              .animate()
-              .fadeIn(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic,
-              )
-              .moveX(
-                begin: -12,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic,
-              );
+                  )
+                  .animate(delay: const Duration(milliseconds: 200))
+                  .fadeIn(
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeOutCubic,
+                  )
+                  .moveY(
+                    begin: 16,
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeOutCubic,
+                  );
 
-          final name = Text(
-            tr('hero.name'),
-            style: textTheme.displayLarge?.copyWith(
-              fontSize: isWide ? 88 : 62,
-            ),
-          )
-              .animate(delay: const Duration(milliseconds: 100))
-              .fadeIn(
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.easeOutCubic,
-              )
-              .moveY(
-                begin: 16,
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.easeOutCubic,
-              );
-
-          final headline = ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 720),
-            child: Text(
-              tr('hero.headline'),
-              style: textTheme.headlineMedium?.copyWith(
-                color: colors.textMuted,
-                fontSize: isWide ? 28 : 24,
-              ),
-            ),
-          )
-              .animate(delay: const Duration(milliseconds: 200))
-              .fadeIn(
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.easeOutCubic,
-              )
-              .moveY(
-                begin: 16,
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.easeOutCubic,
-              );
-
-          final description = ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 680),
-            child: Text(tr('hero.description'), style: textTheme.bodyLarge),
-          )
-              .animate(delay: const Duration(milliseconds: 300))
-              .fadeIn(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic,
-              )
-              .moveY(
-                begin: 12,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic,
-              );
-
-          final buttons = Wrap(
-            spacing: 14,
-            runSpacing: 14,
-            children: [
-              HoverLift(
-                child: ElevatedButton(
-                  key: const Key('hero_download_cv_button'),
-                  onPressed: () => _open(primaryLinks['Download CV']!),
-                  child: Text(tr('hero.cta_cv')),
-                ),
-              ),
-              HoverLift(
-                child: ElevatedButton(
-                  key: const Key('hero_view_projects_button'),
-                  onPressed: onViewProjects,
-                  child: Text(tr('hero.cta_projects')),
-                ),
-              ),
-              for (final entry in primaryLinks.entries)
-                if (entry.key != 'Download CV')
-                  HoverLift(
-                    child: OutlinedButton(
-                      onPressed: () => _open(entry.value),
-                      child: Text(entry.key),
+          final description =
+              ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 680),
+                    child: Text(
+                      'I focus on subscriptions, commerce, operations, maps, payments, healthcare ordering, and multilingual apps built in Flutter for real users and real business teams.',
+                      style: textTheme.bodyLarge,
                     ),
-                  ),
-              for (final entry in secondaryLinks.entries)
-                HoverLift(
-                  child: OutlinedButton(
-                    key: Key('hero_${entry.key.toLowerCase()}_button'),
-                    onPressed: () => _open(entry.value),
-                    child: Text(entry.key),
-                  ),
-                ),
-            ],
-          )
-              .animate(delay: const Duration(milliseconds: 400))
-              .fadeIn(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic,
-              )
-              .moveY(
-                begin: 12,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeOutCubic,
-              );
+                  )
+                  .animate(delay: const Duration(milliseconds: 300))
+                  .fadeIn(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOutCubic,
+                  )
+                  .moveY(
+                    begin: 12,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOutCubic,
+                  );
+
+          final buttons =
+              Wrap(
+                    spacing: 14,
+                    runSpacing: 14,
+                    children: [
+                      HoverLift(
+                        child: ElevatedButton(
+                          key: const Key('hero_download_cv_button'),
+                          onPressed: () => _open(primaryLinks['Download CV']!),
+                          child: const Text('Download CV'),
+                        ),
+                      ),
+                      HoverLift(
+                        child: ElevatedButton(
+                          key: const Key('hero_view_projects_button'),
+                          onPressed: onViewProjects,
+                          child: const Text('View Projects'),
+                        ),
+                      ),
+                      for (final entry in primaryLinks.entries)
+                        if (entry.key != 'Download CV')
+                          HoverLift(
+                            child: OutlinedButton(
+                              onPressed: () => _open(entry.value),
+                              child: Text(entry.key),
+                            ),
+                          ),
+                      for (final entry in secondaryLinks.entries)
+                        HoverLift(
+                          child: OutlinedButton(
+                            key: Key('hero_${entry.key.toLowerCase()}_button'),
+                            onPressed: () => _open(entry.value),
+                            child: Text(entry.key),
+                          ),
+                        ),
+                    ],
+                  )
+                  .animate(delay: const Duration(milliseconds: 400))
+                  .fadeIn(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOutCubic,
+                  )
+                  .moveY(
+                    begin: 12,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOutCubic,
+                  );
 
           final content = Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,9 +293,7 @@ class _HeroVisualState extends State<_HeroVisual>
               ),
             ),
           ),
-          Positioned.fill(
-            child: IgnorePointer(child: const FloatingBadges()),
-          ),
+          Positioned.fill(child: IgnorePointer(child: const FloatingBadges())),
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
@@ -321,24 +324,24 @@ class _HeroVisualState extends State<_HeroVisual>
                     top: 24,
                     child: _MetricCard(
                       icon: Icons.layers_outlined,
-                      title: tr('hero.visual.metric_one_title'),
-                      value: tr('hero.visual.metric_one_value'),
+                      title: 'Product systems',
+                      value: '4 featured',
                     ),
                   ),
                   Positioned(
                     left: 36,
                     top: 132 + (wave * 8),
                     child: const _PhoneMockup(
-                      titleKey: 'hero.visual.mockup_one_title',
-                      subtitleKey: 'hero.visual.mockup_one_subtitle',
+                      title: 'Checkout',
+                      subtitle: 'Payments, QR, bookings',
                     ),
                   ),
                   Positioned(
                     right: 24,
                     top: 196 - (wave * 10),
                     child: const _PhoneMockup(
-                      titleKey: 'hero.visual.mockup_two_title',
-                      subtitleKey: 'hero.visual.mockup_two_subtitle',
+                      title: 'Operations',
+                      subtitle: 'POS, warehouse, shifts',
                       compact: true,
                     ),
                   ),
@@ -348,8 +351,8 @@ class _HeroVisualState extends State<_HeroVisual>
                     bottom: 24,
                     child: _MetricCard(
                       icon: Icons.rocket_launch_outlined,
-                      title: tr('hero.visual.metric_two_title'),
-                      value: tr('hero.visual.metric_two_value'),
+                      title: 'Shipping focus',
+                      value: 'Store-ready Flutter apps',
                     ),
                   ),
                 ],
@@ -409,13 +412,13 @@ class _MetricCard extends StatelessWidget {
 
 class _PhoneMockup extends StatelessWidget {
   const _PhoneMockup({
-    required this.titleKey,
-    required this.subtitleKey,
+    required this.title,
+    required this.subtitle,
     this.compact = false,
   });
 
-  final String titleKey;
-  final String subtitleKey;
+  final String title;
+  final String subtitle;
   final bool compact;
 
   @override
@@ -454,9 +457,9 @@ class _PhoneMockup extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 18),
-            Text(tr(titleKey), style: textTheme.titleMedium),
+            Text(title, style: textTheme.titleMedium),
             const SizedBox(height: 8),
-            Text(tr(subtitleKey), style: textTheme.bodyMedium),
+            Text(subtitle, style: textTheme.bodyMedium),
             const SizedBox(height: 20),
             Expanded(
               child: Column(
